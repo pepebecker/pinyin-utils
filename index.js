@@ -5,6 +5,25 @@ const unicodeToHanzi = (unicode) => {
 	return String.fromCharCode(parseInt(unicode, 16))
 }
 
+const pad = (n, width, z) => {
+	z = z || '0';
+	n = n + '';
+	return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+}
+
+const capitalize = (text) => {
+    return text.charAt(0).toUpperCase() + text.slice(1);
+}
+
+const contains = (list, item) => {
+	for (let i of list) {
+		if (i == item) {
+			return true
+		}
+	}
+	return false
+}
+
 const vovels = {
 	"a": ['ā', 'á', 'ǎ', 'à'],
 	"e": ['ē', 'é', 'ě', 'è'],
@@ -99,4 +118,4 @@ const numberToMark = (text) => {
 	return text
 }
 
-module.exports = {unicodeToHanzi, vovels, getToneNumber, removeTone, markToNumber, numberToMark}
+module.exports = {unicodeToHanzi, pad, capitalize, contains, vovels, getToneNumber, removeTone, markToNumber, numberToMark}
