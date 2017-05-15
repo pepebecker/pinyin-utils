@@ -10,7 +10,7 @@
 ## Install
 
 ```shell
-npm install pinyin-utils@pepebecker/pinyin-utils
+npm install pinyin-utils
 ```
 
 ## Usage
