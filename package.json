@@ -1,6 +1,6 @@
 {
   "name": "pinyin-utils",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Get some information about one or more characters.",
   "main": "index.js",
   "scripts": {
