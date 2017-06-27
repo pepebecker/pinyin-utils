@@ -30,6 +30,7 @@ console.log(utils.capitalize('hao3'))     // Hao3
 
 ## Related
 
+- [`pinyin-split`](https://github.com/pepebecker/pinyin-split)
 - [`find-hanzi`](https://github.com/pepebecker/find-hanzi)
 - [`hsk-words`](https://github.com/pepebecker/hsk-words)
 - [`pinyin-or-hanzi`](https://github.com/pepebecker/pinyin-or-hanzi)
