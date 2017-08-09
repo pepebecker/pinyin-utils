@@ -17,14 +17,14 @@ npm install pinyin-utils@pepebecker/pinyin-utils
 
 ```js
 const utils = require('pinyin-utils')
-console.log(utils.getToneNumber('shì'))     // 4
-console.log(utils.getToneNumber('shi4'))    // 4
-console.log(utils.removeTone('wǒ'))         // wo
-console.log(utils.removeTone('wo3'))        // wo
-console.log(utils.markToNumber('lǜ'))       // lü4
-console.log(utils.numberToMark('lü4'))      // lǜ
-console.log(utils.capitalize('hǎo'))        // Hǎo
-console.log(utils.capitalize('hao3'))       // Hao3
+console.log(utils.getToneNumber('shì'))   // 4
+console.log(utils.getToneNumber('shi4'))  // 4
+console.log(utils.removeTone('wǒ'))       // wo
+console.log(utils.removeTone('wo3'))      // wo
+console.log(utils.markToNumber('lǜ'))     // lü4
+console.log(utils.numberToMark('lü4'))    // lǜ
+console.log(utils.capitalize('hǎo'))      // Hǎo
+console.log(utils.capitalize('hao3'))     // Hao3
 ```
 
 ## Contributing
