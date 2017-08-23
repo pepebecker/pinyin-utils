@@ -1,7 +1,7 @@
 {
   "name": "pinyin-utils",
   "version": "1.0.0",
-  "description": "",
+  "description": "Get some information about one or more characters.",
   "main": "index.js",
   "scripts": {
     "test": "mocha",
@@ -12,8 +12,16 @@
     "type": "git",
     "url": "https://github.com/pepebecker/pinyin-utils.git"
   },
+  "keywords": [
+    "find",
+    "hanzi",
+    "pinyin",
+    "cangjie",
+    "chinese",
+    "mandarin"
+  ],
   "author": "Pepe Becker <mail@pepebecker.com> (http://pepebecker.com)",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/pepebecker/pinyin-utils/issues"
   },
