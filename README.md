@@ -34,7 +34,7 @@ console.log(utils.capitalize('hao3'))     // Hao3
 - [`find-hanzi`](https://github.com/pepebecker/find-hanzi)
 - [`pinyin-or-hanzi`](https://github.com/pepebecker/pinyin-or-hanzi)
 - [`hanzi-to-pinyin`](https://github.com/pepebecker/hanzi-to-pinyin)
-- [`pinyin-converter`](https://github.com/pepebecker/pinyin-converter)
+- [`pinyin-convert`](https://github.com/pepebecker/pinyin-convert)
 
 ## Contributing
 
