@@ -1,27 +1,20 @@
 'use strict'
 
-const unicodeToHanzi = (unicode) => {
-	unicode = unicode.replace('U+', '')
-	return String.fromCharCode(parseInt(unicode, 16))
-}
+const codepointToUnicode = (codepoint) => {
+	if (typeof codepoint === 'string') {
+		codepoint = codepoint.replace('U+', '')
+		
+		if (!/^0x/.test(codepoint)) {
+			codepoint = '0x' + codepoint
+		}
+	}
 
-const pad = (n, width, z) => {
-	z = z || '0';
-	n = n + '';
-	return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+
+	return String.fromCodePoint(codepoint)
 }
 
 const capitalize = (text) => {
     return text.charAt(0).toUpperCase() + text.slice(1);
-}
-
-const contains = (list, item) => {
-	for (let i of list) {
-		if (i == item) {
-			return true
-		}
-	}
-	return false
 }
 
 const vovels = {
@@ -118,4 +111,4 @@ const numberToMark = (text) => {
 	return text
 }
 
-module.exports = {unicodeToHanzi, pad, capitalize, contains, vovels, getToneNumber, removeTone, markToNumber, numberToMark}
+module.exports = {codepointToUnicode, capitalize, vovels, getToneNumber, removeTone, markToNumber, numberToMark}

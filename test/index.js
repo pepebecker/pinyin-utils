@@ -2,9 +2,27 @@
 
 const utils = require('../index')
 
-describe('Unicode to Hanzi', () => {
-	it('should convert unicode U+6211 into 我', (done) => {
-		const result = utils.unicodeToHanzi('U+6211')
+describe('Codepoint to Unicode', () => {
+	it('should convert codepoint "U+6211" into 我', (done) => {
+		const result = utils.codepointToUnicode('U+6211')
+		result.should.equal('我')
+		done()
+	})
+
+	it('should convert codepoint "0x6211" into 我', (done) => {
+		const result = utils.codepointToUnicode('0x6211')
+		result.should.equal('我')
+		done()
+	})
+
+	it('should convert codepoint 0x6211 into 我', (done) => {
+		const result = utils.codepointToUnicode(0x6211)
+		result.should.equal('我')
+		done()
+	})
+
+	it('should convert codepoint "6211" into 我', (done) => {
+		const result = utils.codepointToUnicode('6211')
 		result.should.equal('我')
 		done()
 	})
@@ -46,29 +64,6 @@ describe('Capitalize', () => {
 		const result2 = utils.capitalize('lü4')
 		result1.should.equal('Lǜ')
 		result2.should.equal('Lü4')
-		done()
-	})
-})
-
-describe('Padding', () => {
-	it('should pad number correctly', (done) => {
-		const result1 = utils.pad(9, 5)
-		const result2 = utils.pad(36, 5)
-		const result3 = utils.pad(1025, 5)
-		result1.should.equal('00009')
-		result2.should.equal('00036')
-		result3.should.equal('01025')
-		done()
-	})
-})
-
-describe('Contains', () => {
-	it('should tell whether or not a word is in the list', (done) => {
-		const list = ['wo', 'de', 'mao', 'xi', 'huan', 'he', 'niu', 'nai']
-		const result1 = utils.contains(list, 'mao')
-		const result2 = utils.contains(list, 'huān')
-		result1.should.equal(true)
-		result2.should.equal(false)
 		done()
 	})
 })
