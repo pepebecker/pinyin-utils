@@ -52,8 +52,10 @@ describe('Convert', () => {
 	it('should convert between tone number and mark correctly', (done) => {
 		const result1 = utils.markToNumber('lǜ')
 		const result2 = utils.numberToMark('lü4')
+		const result3 = utils.numberToMark('ping2 guo3')
 		result1.should.equal('lü4')
 		result2.should.equal('lǜ')
+		result3.should.equal('píng guǒ')
 		done()
 	})
 })
