@@ -9,7 +9,6 @@ const codepointToUnicode = codepoint => {
 		}
 	}
 
-
 	return String.fromCodePoint(codepoint)
 }
 
@@ -52,26 +51,23 @@ const removeTone = text => {
 	for (let i in vovels) {
 		for (let t of vovels[i]) {
 			if (text.match(t)) {
-				text = text.replace(t, i)
+				return text.replace(t, i)
 			}
 		}
 	}
 
 	// remove tone from pinyin with tone numbers
-	text = text.replace(/\d/g, '')
-
-	return text
+	return text.replace(/\d/g, '')
 }
 
-const markToNumber = syllables => {
+const markToNumber = (syllables, fithTone = true) => {
 	const process = pinyin => {
-		const tone = getToneNumber(pinyin)
-	
-		if (tone !== 5) {
-			return removeTone(pinyin) + tone
+		if (fithTone) {
+			return removeTone(pinyin) + getToneNumber(pinyin)
+		} else {
+			const tone = getToneNumber(pinyin)
+			return tone === 5 ? removeTone(pinyin) : removeTone(pinyin) + tone
 		}
-
-		return pinyin + tone
 	}
 
 	if (Array.isArray(syllables)) {
