@@ -86,7 +86,10 @@ describe('Convert', () => {
 		utils.markToNumber(['píng', 'guǒ']).should.deepEqual(['ping2', 'guo3'])
 		utils.markToNumber(['wǒ', 'de', 'māo', 'xǐ', 'huan', 'hē', 'niú', 'nǎi'])
 		.should.deepEqual(['wo3', 'de5', 'mao1', 'xi3', 'huan5', 'he1', 'niu2', 'nai3'])
-		
+
+		utils.markToNumber(['wǒ', ' ', 'de', ' ', 'māo', ' ', 'xǐ', 'huan', ' ', 'hē', ' ', 'niú', 'nǎi'])
+		.should.deepEqual(['wo3', ' ', 'de5', ' ', 'mao1', ' ', 'xi3', 'huan5', ' ', 'he1', ' ', 'niu2', 'nai3'])
+
 		done()
 	})
 })

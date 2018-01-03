@@ -1,5 +1,7 @@
 'use strict'
 
+const trim = require('trim')
+
 const codepointToUnicode = codepoint => {
 	if (typeof codepoint === 'string') {
 		codepoint = codepoint.replace('U+', '')
@@ -62,6 +64,7 @@ const removeTone = text => {
 
 const markToNumber = (syllables, fithTone = true) => {
 	const process = pinyin => {
+		if (trim(pinyin).length === 0) return pinyin
 		if (fithTone) {
 			return removeTone(pinyin) + getToneNumber(pinyin)
 		} else {
@@ -79,6 +82,8 @@ const markToNumber = (syllables, fithTone = true) => {
 
 const numberToMark = syllables => {
 	const process = pinyin => {
+		if (trim(pinyin).length === 0) return pinyin
+
 		const tone = getToneNumber(pinyin)
 
 		pinyin = removeTone(pinyin)
