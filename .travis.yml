@@ -1,7 +1,15 @@
 language: node_js
 node_js:
-  - "stable"
-  - "9"
-  - "8"
-after_success:
-  - npm run coveralls
+- stable
+- '9'
+- '8'
+before_deploy:
+- npm version --no-git-tag-version --force $(npx semver -i minor $(npm info pinyin-utils version))
+deploy:
+  provider: npm
+  email: mail@pepebecker.com
+  api_key: ${NPM_TOKEN}
+  skip_cleanup: true
+  on:
+    branch: master
+    node: stable

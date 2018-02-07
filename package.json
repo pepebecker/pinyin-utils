@@ -1,39 +1,34 @@
 {
   "name": "pinyin-utils",
   "version": "1.0.8",
-  "description": "Get some information about one or more characters.",
-  "main": "index.js",
-  "scripts": {
-    "test": "mocha",
-    "cover": "istanbul cover _mocha",
-    "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
+  "description": "Utilities to transform Pinyin syllables",
+  "keywords": [
+    "chinese",
+    "mandarin",
+    "pinyin",
+    "utils",
+    "中文",
+    "拼音"
+  ],
+  "homepage": "https://github.com/pepebecker/pinyin-utils#readme",
+  "bugs": {
+    "url": "https://github.com/pepebecker/pinyin-utils/issues"
   },
+  "license": "MIT",
+  "author": "Pepe Becker <mail@pepebecker.com> (http://pepebecker.com)",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/pepebecker/pinyin-utils.git"
   },
-  "keywords": [
-    "find",
-    "hanzi",
-    "pinyin",
-    "cangjie",
-    "chinese",
-    "mandarin"
-  ],
-  "author": "Pepe Becker <mail@pepebecker.com> (http://pepebecker.com)",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/pepebecker/pinyin-utils/issues"
-  },
-  "homepage": "https://github.com/pepebecker/pinyin-utils#readme",
-  "devDependencies": {
-    "coveralls": "^3.0.0",
-    "istanbul": "^0.4.5",
-    "mocha": "^5.0.1",
-    "mocha-lcov-reporter": "^1.3.0",
-    "should": "^13.2.1"
+  "scripts": {
+    "test": "mocha"
   },
   "dependencies": {
     "trim": "0.0.1"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0",
+    "should": "^13.2.1"
   }
 }

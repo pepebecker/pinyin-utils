@@ -2,7 +2,6 @@
 
 [![npm version](https://img.shields.io/npm/v/pinyin-utils.svg)](https://www.npmjs.com/package/pinyin-utils)
 [![Travis Build Status](https://travis-ci.org/pepebecker/pinyin-utils.svg)](https://travis-ci.org/pepebecker/pinyin-utils)
-[![Coverage Status](https://coveralls.io/repos/github/pepebecker/pinyin-utils/badge.svg)](https://coveralls.io/github/pepebecker/pinyin-utils)
 [![Greenkeeper badge](https://badges.greenkeeper.io/pepebecker/pinyin-utils.svg)](https://greenkeeper.io/)
 [![dependency status](https://img.shields.io/david/pepebecker/pinyin-utils.svg)](https://david-dm.org/pepebecker/pinyin-utils)
 [![dev dependency status](https://img.shields.io/david/dev/pepebecker/pinyin-utils.svg)](https://david-dm.org/pepebecker/pinyin-utils#info=devDependencies)
