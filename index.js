@@ -1,6 +1,6 @@
 'use strict'
 
-const codepointToUnicode = (codepoint) => {
+const codepointToUnicode = codepoint => {
 	if (typeof codepoint === 'string') {
 		codepoint = codepoint.replace('U+', '')
 		
@@ -13,7 +13,7 @@ const codepointToUnicode = (codepoint) => {
 	return String.fromCodePoint(codepoint)
 }
 
-const capitalize = (text) => {
+const capitalize = text => {
     return text.charAt(0).toUpperCase() + text.slice(1);
 }
 
@@ -26,7 +26,7 @@ const vovels = {
 	"ü": ['ǖ', 'ǘ', 'ǚ', 'ǜ']
 }
 
-const getToneNumber = (text) => {
+const getToneNumber = text => {
 	text = text.toLowerCase()
 
 	let tone = 0
@@ -48,7 +48,7 @@ const getToneNumber = (text) => {
 	return tone
 }
 
-const removeTone = (text) => {
+const removeTone = text => {
 	let removed = false
 
 	// remove tone from pinyin with tone marks
@@ -73,42 +73,50 @@ const removeTone = (text) => {
 	return removed && text
 }
 
-const markToNumber = (text) => {
-	const tone = getToneNumber(text)
-
-	if (tone > 0) {
-		for (let v in vovels) {
-			for (var t = 0; t < vovels[v].length; t++) {
-				if (text.match(vovels[v][t])) {
-					text = text.replace(vovels[v][t], v)
+const markToNumber = text => {
+	const process = pinyin => {
+		const tone = getToneNumber(pinyin)
+	
+		if (tone > 0) {
+			for (let v in vovels) {
+				for (var t = 0; t < vovels[v].length; t++) {
+					if (pinyin.match(vovels[v][t])) {
+						pinyin = pinyin.replace(vovels[v][t], v)
+					}
 				}
 			}
+			pinyin += tone
 		}
-		text += tone
+
+		return pinyin
 	}
 
-	return text	
+	return text.split(' ').map(process).join(' ')
 }
 
-const numberToMark = (text) => {
-	const tone = getToneNumber(text)
-
-	if (tone > 0) {
-		text = text.replace(/[1-4]/, '')
-
-		const matchedVovels = text.match(/[aeiouü]/g)
-		if (matchedVovels) {
-			let vovel = matchedVovels[matchedVovels.length-1]
-
-			if (text.match('ou')) vovel = 'o'
-			if (text.match('a')) vovel = 'a'
-			if (text.match('e')) vovel = 'e'
-
-			text = text.replace(vovel, vovels[vovel][tone-1])
+const numberToMark = text => {
+	const process = pinyin => {
+		const tone = getToneNumber(pinyin)
+	
+		if (tone > 0) {
+			pinyin = pinyin.replace(/[1-4]/, '')
+	
+			const matchedVovels = pinyin.match(/[aeiouü]/g)
+			if (matchedVovels) {
+				let vovel = matchedVovels[matchedVovels.length-1]
+	
+				if (pinyin.match('ou')) vovel = 'o'
+				if (pinyin.match('a')) vovel = 'a'
+				if (pinyin.match('e')) vovel = 'e'
+	
+				pinyin = pinyin.replace(vovel, vovels[vovel][tone-1])
+			}
 		}
+
+		return pinyin
 	}
 
-	return text
+	return text.split(' ').map(process).join(' ')
 }
 
 module.exports = {codepointToUnicode, capitalize, vovels, getToneNumber, removeTone, markToNumber, numberToMark}
