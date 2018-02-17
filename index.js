@@ -23,100 +23,97 @@ const vovels = {
 	"i": ['ī', 'í', 'ǐ', 'ì'],
 	"o": ['ō', 'ó', 'ǒ', 'ò'],
 	"u": ['ū', 'ú', 'ǔ', 'ù'],
-	"ü": ['ǖ', 'ǘ', 'ǚ', 'ǜ']
+	"ü": ['ǖ', 'ǘ', 'ǚ', 'ǜ'],
+	"m": ['m̄', 'ḿ', 'm̌', 'm̀'],
+	"n": ['n̄', 'ń', 'ň', 'ǹ']
 }
 
 const getToneNumber = text => {
 	text = text.toLowerCase()
 
-	let tone = 0
+	const toneNumberRegex = /[a-zü](\d)/
+	if (toneNumberRegex.test(text)) {
+		return parseInt(text.match(toneNumberRegex)[1])
+	}
 
 	for (let v in vovels) {
 		for (var i = 0; i < vovels[v].length; i++) {
-			const t = i + 1
 			if (text.match(vovels[v][i])) {
-				tone = t
-				break
-			}
-			if (text.match(new RegExp('[a-zü]+'+t))) {
-				tone = t
-				break
+				return i + 1
 			}
 		}
 	}
 
-	return tone
+	return 5
 }
 
 const removeTone = text => {
-	let removed = false
-
 	// remove tone from pinyin with tone marks
-	if (getToneNumber(text) > 0) {
-		for (let i in vovels) {
-			for (let t of vovels[i]) {
-				if (text.match(t)) {
-					text = text.replace(t, i)
-					removed = true
-				}
+	for (let i in vovels) {
+		for (let t of vovels[i]) {
+			if (text.match(t)) {
+				text = text.replace(t, i)
 			}
 		}
 	}
 
 	// remove tone from pinyin with tone numbers
-	const matches = text.match(/[1-4]/)
-	if (matches && matches.length > 0) {
-		text = text.replace(matches[0], '')
-		removed = true
-	}
+	text = text.replace(/\d/g, '')
 
-	return removed && text
+	return text
 }
 
-const markToNumber = text => {
+const markToNumber = syllables => {
 	const process = pinyin => {
 		const tone = getToneNumber(pinyin)
 	
-		if (tone > 0) {
-			for (let v in vovels) {
-				for (var t = 0; t < vovels[v].length; t++) {
-					if (pinyin.match(vovels[v][t])) {
-						pinyin = pinyin.replace(vovels[v][t], v)
-					}
+		if (tone !== 5) {
+			return removeTone(pinyin) + tone
+		}
+
+		return pinyin + tone
+	}
+
+	if (Array.isArray(syllables)) {
+		return syllables.map(process)
+	} else {
+		return process(syllables)
+	}
+}
+
+const numberToMark = syllables => {
+	const process = pinyin => {
+		const tone = getToneNumber(pinyin)
+
+		pinyin = removeTone(pinyin)
+	
+		if (tone !== 5) {
+			const matchedNM = pinyin.match(/^[nm]$/)
+			if (matchedNM) {
+				const letter = matchedNM[matchedNM.length - 1]
+				pinyin = pinyin.replace(letter, vovels[letter][tone - 1])
+			} else {
+				const matchedVovels = pinyin.match(/[aeiouü]/g)
+				if (matchedVovels) {
+					let vovel = matchedVovels[matchedVovels.length-1]
+		
+					if (pinyin.match('ou')) vovel = 'o'
+					if (pinyin.match('a')) vovel = 'a'
+					if (pinyin.match('e')) vovel = 'e'
+		
+					pinyin = pinyin.replace(vovel, vovels[vovel][tone-1])
 				}
 			}
-			pinyin += tone
 		}
 
 		return pinyin
 	}
 
-	return text.split(' ').map(process).join(' ')
-}
-
-const numberToMark = text => {
-	const process = pinyin => {
-		const tone = getToneNumber(pinyin)
-	
-		if (tone > 0) {
-			pinyin = pinyin.replace(/[1-4]/, '')
-	
-			const matchedVovels = pinyin.match(/[aeiouü]/g)
-			if (matchedVovels) {
-				let vovel = matchedVovels[matchedVovels.length-1]
-	
-				if (pinyin.match('ou')) vovel = 'o'
-				if (pinyin.match('a')) vovel = 'a'
-				if (pinyin.match('e')) vovel = 'e'
-	
-				pinyin = pinyin.replace(vovel, vovels[vovel][tone-1])
-			}
-		}
-
-		return pinyin
+	if (Array.isArray(syllables)) {
+		return syllables.map(process)
+	} else {
+		return process(syllables)
 	}
-
-	return text.split(' ').map(process).join(' ')
 }
 
 module.exports = {codepointToUnicode, capitalize, vovels, getToneNumber, removeTone, markToNumber, numberToMark}
