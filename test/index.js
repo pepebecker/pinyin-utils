@@ -68,6 +68,10 @@ describe('Convert', () => {
 			utils.numberToMark(s[0] + '4').should.equal(s[4])
 		})
 
+		utils.numberToMark(['ping2', 'guo3']).should.deepEqual(['píng', 'guǒ'])
+		utils.numberToMark(['wo3', 'de5', 'mao1', 'xi3', 'huan', 'he1', 'niu2', 'nai3'])
+		.should.deepEqual(['wǒ', 'de', 'māo', 'xǐ', 'huan', 'hē', 'niú', 'nǎi'])
+
 		done()
 	})
 	it('should convert mark to tone number correctly', (done) => {
@@ -80,7 +84,8 @@ describe('Convert', () => {
 		})
 
 		utils.markToNumber(['píng', 'guǒ']).should.deepEqual(['ping2', 'guo3'])
-		utils.numberToMark(['ping2', 'guo3']).should.deepEqual(['píng', 'guǒ'])
+		utils.markToNumber(['wǒ', 'de', 'māo', 'xǐ', 'huan', 'hē', 'niú', 'nǎi'])
+		.should.deepEqual(['wo3', 'de5', 'mao1', 'xi3', 'huan5', 'he1', 'niu2', 'nai3'])
 		
 		done()
 	})
