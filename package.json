@@ -14,13 +14,13 @@
   "bugs": {
     "url": "https://github.com/pepebecker/pinyin-utils/issues"
   },
-  "license": "MIT",
-  "author": "Pepe Becker <mail@pepebecker.com> (http://pepebecker.com)",
-  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/pepebecker/pinyin-utils.git"
   },
+  "license": "MIT",
+  "author": "Pepe Becker <mail@pepebecker.com> (http://pepebecker.com)",
+  "main": "index.js",
   "scripts": {
     "test": "mocha"
   },
