@@ -1,6 +1,6 @@
 'use strict'
 
-const trim = require('trim')
+const trim = str => str.replace(/^\s*|\s*$/g, '')
 
 const codepointToUnicode = codepoint => {
 	if (typeof codepoint === 'string') {
