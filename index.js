@@ -14,10 +14,6 @@ const codepointToUnicode = codepoint => {
 	return String.fromCodePoint(codepoint)
 }
 
-const capitalize = text => {
-    return text.charAt(0).toUpperCase() + text.slice(1);
-}
-
 const vovels = {
 	"a": ['ā', 'á', 'ǎ', 'à'],
 	"e": ['ē', 'é', 'ě', 'è'],
@@ -117,4 +113,4 @@ const numberToMark = syllables => {
 	}
 }
 
-module.exports = {codepointToUnicode, capitalize, vovels, getToneNumber, removeTone, markToNumber, numberToMark}
+module.exports = { codepointToUnicode, vovels, getToneNumber, removeTone, markToNumber, numberToMark }

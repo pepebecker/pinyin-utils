@@ -24,8 +24,6 @@ console.log(utils.removeTone('wǒ'))       // wo
 console.log(utils.removeTone('wo3'))      // wo
 console.log(utils.markToNumber('lǜ'))     // lü4
 console.log(utils.numberToMark('lü4'))    // lǜ
-console.log(utils.capitalize('hǎo'))      // Hǎo
-console.log(utils.capitalize('hao3'))     // Hao3
 ```
 
 ## Related

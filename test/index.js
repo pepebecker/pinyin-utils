@@ -93,18 +93,3 @@ describe('Convert', () => {
 		done()
 	})
 })
-
-describe('Capitalize', () => {
-	it('should capitalize correctly', done => {
-		utils.capitalize('lǜ').should.equal('Lǜ')
-		utils.capitalize('lü4').should.equal('Lü4')
-		utils.capitalize('de5').should.equal('De5')
-		utils.capitalize('de').should.equal('De')
-		utils.capitalize('ń').should.equal('Ń')
-		utils.capitalize('m̌').should.equal('M̌')
-		utils.capitalize('biáng').should.equal('Biáng')
-		utils.capitalize('miào').should.equal('Miào')
-		utils.capitalize('miao4').should.equal('Miao4')
-		done()
-	})
-})
