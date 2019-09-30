@@ -19,13 +19,13 @@
     "url": "https://github.com/pepebecker/pinyin-utils.git"
   },
   "license": "MIT",
-  "author": "Pepe Becker <mail@pepebecker.com> (http://pepebecker.com)",
+  "author": "Pepe Becker <mail@pepebecker.com> (https://pepe.asia)",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
   },
   "devDependencies": {
-    "mocha": "^5.2.0",
+    "mocha": "^6.2.1",
     "should": "^13.2.3"
   }
 }
