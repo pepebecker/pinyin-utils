@@ -27,5 +27,8 @@
   "devDependencies": {
     "mocha": "^6.2.1",
     "should": "^13.2.3"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   }
 }
