@@ -1,5 +1,3 @@
-const trim = (text: string) => text.replace(/^\s*|\s*$/g, '')
-
 export const codepointToUnicode = (codepoint: string | number) => {
   if (typeof codepoint === 'string') {
     let codepointStr = codepoint.replace('U+', '')
@@ -34,7 +32,7 @@ export const removeTone = (text: string) => {
 }
 
 export const markToNumber = (text: string, fithTone = true) => {
-  if (trim(text).length === 0) return text
+  if (text.trim().length === 0) return text
   if (fithTone) {
     return removeTone(text) + getToneNumber(text)
   } else {
@@ -44,7 +42,7 @@ export const markToNumber = (text: string, fithTone = true) => {
 }
 
 export const numberToMark = (text: string) => {
-  if (trim(text).length === 0) return text
+  if (text.trim().length === 0) return text
 
   const tone = getToneNumber(text)
 
