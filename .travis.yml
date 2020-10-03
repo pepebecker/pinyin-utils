@@ -1,8 +1,9 @@
 language: node_js
 node_js:
 - stable
-- '9'
-- '8'
+- '12'
+- '11'
+- '10'
 before_deploy:
 - npm version --no-git-tag-version --force $(npx semver -i minor $(npm info pinyin-utils version))
 deploy:
