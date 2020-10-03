@@ -7,7 +7,7 @@
     "forceConsistentCasingInFileNames": true,
     "outDir": "./lib/esm",
     "declaration": true,
-    "declarationDir": "./lib/types"
+    "declarationDir": "./lib/types",
   },
   "include": [
     "./src",
