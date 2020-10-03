@@ -18,7 +18,7 @@
     "type": "git",
     "url": "https://github.com/pepebecker/pinyin-utils.git"
   },
-  "license": "MIT",
+  "license": "ISC",
   "author": "Pepe Becker <mail@pepebecker.com> (https://pepe.asia)",
   "main": "index.js",
   "scripts": {
