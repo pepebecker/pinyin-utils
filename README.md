@@ -15,7 +15,7 @@ npm install pinyin-utils
 ## Usage
 
 ```js
-const utils = require('pinyin-utils')
+import * as utils from 'pinyin-utils'
 console.log(utils.getToneNumber('shì'))   // 4
 console.log(utils.getToneNumber('shi4'))  // 4
 console.log(utils.removeTone('wǒ'))       // wo
