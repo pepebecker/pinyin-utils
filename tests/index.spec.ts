@@ -1,5 +1,6 @@
 'use strict'
 
+import 'mocha'
 import * as utils from '../src/index'
 import { expect } from 'chai'
 import syllables from './syllables'
