@@ -66,18 +66,39 @@ export const removeTone = (text: string) => {
  * @param fithTone show fith tone as number (ex. `he` => `he5`)
  * @example
  * ```
- * markToNumber('lǜ') // lü4
- * markToNumber('he') // he5
+ * markToNumber('lǜ')        // lü4
+ * markToNumber('he')        // he5
  * markToNumber('he', false) // he
  * ```
  */
-export const markToNumber = (text: string, fithTone = true) => {
-  if (text.trim().length === 0) return text
-  if (fithTone) {
-    return removeTone(text) + getToneNumber(text)
+export function markToNumber(text: string, fithTone?: boolean): string
+/**
+ * Converts the tone mark into the corresponding tone number
+ * @param list list of Pinyin syllables containing the tone mark to be converted
+ * @param fithTone show fith tone as number (ex. `he` => `he5`)
+ * @example
+ * ```
+ * markToNumber(['Wǒ', 'shì', 'dé', 'guó', 'rén'])
+ * // ['Wo3', 'shi4', 'de2', 'guo2', 'ren2']
+ * markToNumber(['he'])        // ["he5"]
+ * markToNumber(['he'], false) // ["he"]
+ * ```
+ */
+export function markToNumber(list: string[], fithTone?: boolean): string[]
+export function markToNumber(data: string | string[], fithTone = true): string | string[] {
+  const process = (text: string) => {
+    if (text.trim().length === 0) return text
+    if (fithTone) {
+      return removeTone(text) + getToneNumber(text)
+    } else {
+      const tone = getToneNumber(text)
+      return tone === 5 ? removeTone(text) : removeTone(text) + tone
+    }
+  }
+  if (Array.isArray(data)) {
+    return data.map(process)
   } else {
-    const tone = getToneNumber(text)
-    return tone === 5 ? removeTone(text) : removeTone(text) + tone
+    return process(data)
   }
 }
 
@@ -90,25 +111,44 @@ export const markToNumber = (text: string, fithTone = true) => {
  * numberToMark('he5') // he
  * ```
  */
-export const numberToMark = (text: string) => {
-  if (text.trim().length === 0) return text
+export function numberToMark(text: string): string
+/**
+ * Converts the tone number into the corresponding tone mark
+ * @param list list of Pinyin syllables containing the tone number to be converted
+ * @example
+ * ```
+ * markToNumber(['Wo3', 'shi4', 'de2', 'guo2', 'ren2'])
+ * // ['Wǒ', 'shì', 'dé', 'guó', 'rén']
+ * numberToMark('he5') // he
+ * ```
+ */
+export function numberToMark(list: string[]): string[]
+export function numberToMark(data: string | string[]): string | string[] {
+  const process = (text: string) => {
+    if (text.trim().length === 0) return text
 
-  const tone = getToneNumber(text)
+    const tone = getToneNumber(text)
 
-  text = removeTone(text)
+    text = removeTone(text)
 
-  if (tone !== 5) {
-    if (text === 'm' || text === 'n' || text === 'M' || text === 'N') {
-      return (text + toneMarks[tone - 1]).normalize('NFC')
+    if (tone !== 5) {
+      if (text === 'm' || text === 'n' || text === 'M' || text === 'N') {
+        return (text + toneMarks[tone - 1]).normalize('NFC')
+      }
+      const matchedVovels = text.match(/[aeiouü]/gi);
+      if (matchedVovels) {
+        let vovel = matchedVovels[matchedVovels.length - 1];
+        if (text.match('ou')) vovel = 'o'
+        if (text.match('a')) vovel = 'a'
+        if (text.match('e')) vovel = 'e'
+        return text.replace(vovel, vovel + toneMarks[tone - 1]).normalize('NFC')
+      }
     }
-    const matchedVovels = text.match(/[aeiouü]/gi);
-    if (matchedVovels) {
-      let vovel = matchedVovels[matchedVovels.length - 1];
-      if (text.match('ou')) vovel = 'o'
-      if (text.match('a')) vovel = 'a'
-      if (text.match('e')) vovel = 'e'
-      return text.replace(vovel, vovel + toneMarks[tone - 1]).normalize('NFC')
-    }
+    return text
   }
-  return text
+  if (Array.isArray(data)) {
+    return data.map(process)
+  } else {
+    return process(data)
+  }
 }

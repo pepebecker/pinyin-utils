@@ -72,4 +72,12 @@ describe('Convert', () => {
       expect(utils.markToNumber(s[4])).equal(s[0] + '4')
     }
   })
+  it('should convert list of tone numbered Pinyin into list of tone marked Pinyin', () => {
+    expect(utils.numberToMark(['Wo3', 'shi4', 'de2', 'guo2', 'ren2']))
+      .deep.equal(['Wǒ', 'shì', 'dé', 'guó', 'rén'])
+  })
+  it('should convert list of tone marked Pinyin into list of tone numbered Pinyin', () => {
+    expect(utils.markToNumber(['Wǒ', 'shì', 'dé', 'guó', 'rén']))
+      .deep.equal(['Wo3', 'shi4', 'de2', 'guo2', 'ren2'])
+  })
 })
