@@ -1,8 +1,7 @@
-'use strict'
-
 import 'mocha'
-import * as utils from '../src/index'
 import { expect } from 'chai'
+
+import * as utils from '../src/index'
 import syllables from './syllables'
 
 describe('Codepoint to Unicode', () => {
