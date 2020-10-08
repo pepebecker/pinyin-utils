@@ -4,7 +4,7 @@
 [![Travis Build Status](https://travis-ci.org/pepebecker/pinyin-utils.svg)](https://travis-ci.org/pepebecker/pinyin-utils)
 [![dependency status](https://img.shields.io/david/pepebecker/pinyin-utils.svg)](https://david-dm.org/pepebecker/pinyin-utils)
 [![dev dependency status](https://img.shields.io/david/dev/pepebecker/pinyin-utils.svg)](https://david-dm.org/pepebecker/pinyin-utils#info=devDependencies)
-[![ICS-licensed](https://img.shields.io/github/license/pepebecker/pinyin-utils.svg)](https://opensource.org/licenses/ICS)
+[![ISC-licensed](https://img.shields.io/github/license/pepebecker/pinyin-utils.svg)](https://opensource.org/licenses/ISC)
 
 ## Install
 
